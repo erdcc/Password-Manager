@@ -42,7 +42,7 @@ def EditFunc():
     lblMessage.config(text="Editing is done.")
 
 
-def ShowFunc(event):
+def ShowFunc(*args):
     txtPassword.delete(0, 'end')
     txtUsername.delete(0, 'end')
     lblMessage.config(text="")
@@ -104,6 +104,7 @@ lblApp = tk.Label(app, text="Application : ")
 txtApp = tk.Entry(app, bg="white", bd=2, font="TimesNewRoman 12 bold", fg="black")
 txtApp.bind("<Double-Button-1>", listApps)
 txtApp.bind('<Return>', ShowFunc)
+
 
 lblUsername = tk.Label(app, text="Username : ")
 txtUsername = tk.Entry(app, bg="white", bd=2, font="Arial 12 bold", fg="black")
