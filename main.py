@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import tkinter as tk
+from ttkwidgets.autocomplete import AutocompleteCombobox
 import random
 import string
 import sqlite3
@@ -23,7 +24,9 @@ app.grid()
 con = sqlite3.connect("database.db")
 cursor = con.cursor()
 cursor.execute("CREATE TABLE IF NOT EXISTS passwords(application TEXT, username TEXT, password TEXT)")
-
+cursor.execute("SELECT APPLICATION FROM PASSWORDS")
+apps = cursor.fetchall()
+apps=[ele[0] for ele in apps]
 
 # Functions
 def AddFunc():
@@ -89,22 +92,16 @@ def DeleteFunc():
     con.commit()
 
 
-def listApps(event):
-    popup = tk.Toplevel()
-    popup.wm_title("Application List")
-    cursor.execute("SELECT APPLICATION FROM PASSWORDS")
-    apps = cursor.fetchall()
-    for i in range(len(apps)):
-        t = tk.Label(popup, text=apps[i])
-        t.grid(row=i, column=1)
-
-
 # initializing objects
 lblApp = tk.Label(app, text="Application : ")
-txtApp = tk.Entry(app, bg="white", bd=2, font="TimesNewRoman 12 bold", fg="black")
-txtApp.bind("<Double-Button-1>", listApps)
+txtApp = AutocompleteCombobox(
+    app, 
+    width=18, 
+    font=( 'Arial', 12,'bold'),
+    completevalues=apps
+    )
 txtApp.bind('<Return>', ShowFunc)
-
+txtApp.focus()
 
 lblUsername = tk.Label(app, text="Username : ")
 txtUsername = tk.Entry(app, bg="white", bd=2, font="Arial 12 bold", fg="black")

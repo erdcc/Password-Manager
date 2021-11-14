@@ -130,3 +130,6 @@ dmypy.json
 
 #database
 database.db
+
+#test
+test.py
