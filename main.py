@@ -14,7 +14,7 @@ def close():
 win = tk.Tk()
 win.protocol("WM_DELETE_WINDOW", close)
 win.title("Password Manager")
-win.geometry("450x250+500+200")
+win.geometry("400x220+760+320")
 
 # Grid form
 app = tk.Frame(win)
@@ -107,7 +107,7 @@ lblUsername = tk.Label(app, text="Username : ")
 txtUsername = tk.Entry(app, bg="white", bd=2, font="Arial 12 bold", fg="black")
 
 lblPassword = tk.Label(app, text="Password : ")
-txtPassword = tk.Entry(app, bg="white", bd=2, font="TimesNewRoman 12 bold", fg="black")
+txtPassword = tk.Entry(app, bg="white", bd=2, font="Arial 12 bold", fg="black")
 lblMessage = tk.Label(app, text="")
 
 btnAdd = tk.Button(app, text="Add", command=AddFunc)
